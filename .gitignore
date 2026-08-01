@@ -1,0 +1,18 @@
+# 環境変数
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# データ
+data/*.jsonl
+data/*.db
+
+# エディタ
+.vscode/
+.idea/
+
+# OS
+.DS_Store
