@@ -1,8 +1,8 @@
 import dotenv
 from loguru import logger
 
-from chatbot_cli.memory import ConversationMemory
 from chatbot_cli.llm import get_response
+from chatbot_cli.memory import ConversationMemory
 
 
 def main():
