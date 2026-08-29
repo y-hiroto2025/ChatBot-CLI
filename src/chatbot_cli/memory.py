@@ -15,6 +15,7 @@ class ConversationMemory:
 
         with open(filepath, "a", encoding="utf-8") as f:
 
-            for text_dict in self.history:
-                text_str = json.dumps(text_dict, ensure_ascii=False)
-                f.write(text_str + "\n")
+            f.write(json.dumps({"event": "session_start"}, ensure_ascii=False) + "\n")
+            for message_dict in self.history:
+                message_str = json.dumps(message_dict, ensure_ascii=False)
+                f.write(message_str + "\n")
