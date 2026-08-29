@@ -1,21 +1,30 @@
 import json
+from typing import Literal
+
+from pydantic import BaseModel, Field
 
 
-class ConversationMemory:
-    def __init__(self):
-        self.history = []
+class Message(BaseModel):
+    role: Literal["user", "model"]
+    text: str
+
+    def to_gemini_format(self) -> dict:
+        return {"role": self.role, "parts": [{"text": self.text}]}
+
+class ConversationSession(BaseModel):
+    messages: list[Message] = Field(default_factory=list)
 
     def add_message(self, role: str, text: str):
-        self.history.append({"role": role, "parts": [{"text": text}]})
+        self.messages.append(Message(role=role, text=text))
 
-    def get_history(self) -> list:
-        return self.history
+    def get_history(self) -> list[dict]:
+        return [msg.to_gemini_format() for msg in self.messages]
 
     def save_to_jsonl(self, filepath: str):
 
         with open(filepath, "a", encoding="utf-8") as f:
 
             f.write(json.dumps({"event": "session_start"}, ensure_ascii=False) + "\n")
-            for message_dict in self.history:
-                message_str = json.dumps(message_dict, ensure_ascii=False)
-                f.write(message_str + "\n")
+            for msg in self.messages:
+                text_str = json.dumps(msg.model_dump(), ensure_ascii=False)
+                f.write(text_str + "\n")

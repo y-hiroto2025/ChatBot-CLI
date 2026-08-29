@@ -2,7 +2,7 @@ import dotenv
 from loguru import logger
 
 from chatbot_cli.llm import get_response
-from chatbot_cli.memory import ConversationMemory
+from chatbot_cli.memory import ConversationSession
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
 
     logger.info("Launch a chat application.")
 
-    memory = ConversationMemory()
+    memory = ConversationSession()
     print("---Chat started. Type '0' to exit.---")
 
     while True:
