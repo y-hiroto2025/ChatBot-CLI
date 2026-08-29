@@ -2,7 +2,6 @@ import dotenv
 from google import genai
 from loguru import logger
 
-
 dotenv.load_dotenv()
 
 _client = genai.Client()
