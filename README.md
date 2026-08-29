@@ -8,9 +8,20 @@
 ## Features
 - gemini-3.5-flash.liteを使用した応答
 - リストを利用して複数ターンの会話を保持
+- JSONLを用いた会話履歴の保存
 
 ## Tech Stack
-- Python 3.12
+- Python 3.12+
 - uv
 - google-genai
 - python-dotenv
+- loguru
+- pydantic
+- Ruff
+- GitHub Actions
+
+## Hou to Run
+1. リポジトリをクローンし、'.env'ファイルに`GEMINI_API_KEY=あなたのキー` を設定
+2. 以下のコマンドで起動
+```bash
+uv run python src/chatbot_cli/main.py

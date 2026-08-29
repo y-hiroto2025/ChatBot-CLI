@@ -1,17 +1,17 @@
-from chatbot_cli.memory import ConversationMemory
+from chatbot_cli.memory import ConversationSession
 
 
 def test_initial_history_is_empty():
-    memory = ConversationMemory()
+    memory = ConversationSession()
 
     assert memory.get_history() == []
 
 def test_add_message():
-    memory = ConversationMemory()
+    memory = ConversationSession()
 
     memory.add_message("user", "こんにちは")
-    history = memory.get_history()
+    messages = memory.get_history()
 
-    assert len(history) == 1
-    assert history[0]["role"] == "user"
-    assert history[0]["parts"][0]["text"] == "こんにちは"
+    assert len(messages) == 1
+    assert messages[0]["role"] == "user"
+    assert messages[0]["parts"][0]["text"] == "こんにちは"
