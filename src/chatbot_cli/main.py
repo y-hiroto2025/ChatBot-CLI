@@ -15,6 +15,10 @@ def main():
         user_text = input("User: ")
 
         if user_text == "0":
+
+            if memory.get_history() != []:
+                memory.save_to_jsonl("data/chat_log.jsonl")
+
             break
 
         memory.add_message("user", user_text)
