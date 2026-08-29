@@ -9,6 +9,7 @@ __pycache__/
 # データ
 data/*.jsonl
 data/*.db
+data/*.log
 
 # エディタ
 .vscode/
